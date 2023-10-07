@@ -1,4 +1,5 @@
-package grpcerror
+// Package grpcerrors provides wrappers around standard gRPC error codes.
+package grpcerrors
 
 import (
 	"context"
