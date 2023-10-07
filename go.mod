@@ -1,4 +1,4 @@
-module github.com/danielwchapman/grpcerror
+module github.com/danielwchapman/grpcerrors
 
 go 1.21.2
 
