@@ -4,6 +4,7 @@ package grpcerrors
 import (
 	"context"
 	"errors"
+	"fmt"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -80,6 +81,10 @@ func MakeInvalidArgumentError(msg string) *InvalidArgumentError {
 	return &InvalidArgumentError{msg: msg}
 }
 
+func MakeInvalidArgumentErrorf(format string, args ...interface{}) *InvalidArgumentError {
+	return &InvalidArgumentError{msg: fmt.Sprintf(format, args...)}
+}
+
 func (e *InvalidArgumentError) Error() string {
 	return e.msg
 }
@@ -141,6 +146,10 @@ func MakePermissionDeniedError(msg string) *PermissionDeniedError {
 	return &PermissionDeniedError{msg: msg}
 }
 
+func MakePermissionDeniedErrorf(format string, args ...interface{}) *PermissionDeniedError {
+	return &PermissionDeniedError{msg: fmt.Sprintf(format, args...)}
+}
+
 func (e *PermissionDeniedError) Error() string {
 	if e.msg == "" {
 		return "permission denied"
@@ -171,6 +180,10 @@ type FailedPreconditionError struct {
 
 func MakeFailedPreconditionError(msg string) *FailedPreconditionError {
 	return &FailedPreconditionError{msg: msg}
+}
+
+func MakeFailedPreconditionErrorf(format string, args ...interface{}) *FailedPreconditionError {
+	return &FailedPreconditionError{msg: fmt.Sprintf(format, args...)}
 }
 
 func (e *FailedPreconditionError) Error() string {
@@ -223,6 +236,10 @@ type InternalError struct {
 
 func MakeInternalError(msg string) *InternalError {
 	return &InternalError{err: errors.New(msg)}
+}
+
+func MakeInternalErrorf(format string, args ...interface{}) *InternalError {
+	return &InternalError{err: fmt.Errorf(format, args...)}
 }
 
 func (e *InternalError) Error() string {

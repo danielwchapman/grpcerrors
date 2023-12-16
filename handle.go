@@ -7,11 +7,11 @@ import (
 	"runtime"
 )
 
-// CleanError ensures sensitive data is not leaked into public API error messages.
+// Clean ensures sensitive data is not leaked into public API error messages.
 // It also converts common error types, like ContextCancelled and DeadlineExceeded,
 // to gRPC equivalents. In its current form, it does not translate all error types.
 // When it is in doubt, it returns and logs an Internal Error.
-func CleanError(ctx context.Context, err error) error {
+func Clean(ctx context.Context, err error) error {
 	if err == nil {
 		return nil
 	}
